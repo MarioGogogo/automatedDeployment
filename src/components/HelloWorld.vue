@@ -7,7 +7,7 @@
       <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
     </p>
     <template>
-      <h3>Installed CLI Plugins</h3>
+      <h3>现在是更新测试</h3>
     </template>
     <button @click="showToast">Show toast</button>
     <br />
