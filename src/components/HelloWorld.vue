@@ -7,7 +7,7 @@
       <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
     </p>
     <template>
-      <h3>现在是更新测试11122222222222222222222222</h3>
+      <h3>现在是更新测试</h3>
     </template>
     <button @click="showToast">Show toast</button>
     <br />
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { HeartRating } from 'vue-rate-it';
+import { HeartRating } from 'vue-rate-it'
 export default {
   name: 'HelloWorld',
   props: {
@@ -34,23 +34,24 @@ export default {
     return {
       ratNum: 0,
       rating: [],
-    };
+      last: '哈哈',
+    }
   },
   mounted() {
     //模拟2秒后的请求
     setTimeout(() => {
-      this.ratNum = 5;
-    }, 2000);
+      this.ratNum = 5
+    }, 2000)
   },
   components: {
     HeartRating,
   },
   methods: {
     showToast() {
-      this.$toast.success('i am a toast💕,' + this.rating);
+      this.$toast.success('i am a toast💕,' + this.rating)
     },
   },
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

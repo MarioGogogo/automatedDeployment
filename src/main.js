@@ -5,6 +5,11 @@ import store from './store';
 import Toast from 'vue-toastification';
 // Toast 样式
 import 'vue-toastification/dist/index.css';
+import VueDND from 'awe-dnd'
+// 导入拖拽组件
+Vue.use(VueDND)
+
+
 Vue.use(Toast, {
   transition: 'Vue-Toastification__bounce',
   maxToasts: 3,

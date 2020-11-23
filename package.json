@@ -7,6 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "awe-dnd": "^0.3.4",
     "vue": "^2.6.11",
     "vue-rate-it": "^2.1.0",
     "vue-router": "^3.2.0",

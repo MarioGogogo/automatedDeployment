@@ -6,7 +6,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
+// @ is an alias to /src333
 import HelloWorld from '@/components/HelloWorld.vue';
 
 export default {
@@ -14,5 +14,15 @@ export default {
   components: {
     HelloWorld,
   },
+  data(){
+    return {
+       msg:''
+    }
+  },
+  created() {
+    if(this.$route.name === 'Home'){
+       this.msg = 'hello word'
+    }
+  }
 };
 </script>
