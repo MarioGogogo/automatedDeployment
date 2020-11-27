@@ -28,6 +28,12 @@ Vue.use(Toast, {
   rtl: false,
 });
 
+
+import Vant from 'vant';
+import 'vant/lib/index.css';
+Vue.use(Vant);
+
+
 Vue.config.productionTip = false;
 Vue.config.devtools = true;
 new Vue({

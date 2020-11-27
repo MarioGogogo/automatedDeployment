@@ -1,30 +1,54 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
+import Vue from "vue";
+import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home,
+    path: "/home",
+    name: "Home",
+    component: () => import(/* webpackChunkName: "drag" */ "../views/Home.vue"),
+    meta: {
+      index: 0,
+    },
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting222
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    path: "/message",
+    name: "Message",
+    component: () =>
+      import(/* webpackChunkName: "drag" */ "../views/Message.vue"),
   },
   {
-    path: '/drag',
-    name: 'Drag',
-    // route level code-splitting222
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Drag.vue'),
+    path: "/setting",
+    name: "Setting",
+    component: () =>
+      import(/* webpackChunkName: "drag" */ "../views/Setting.vue"),
+  },
+  {
+    path: "/v1.0",
+    name: "v",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Child.vue"),
+    children: [
+      {
+        path: "drag",
+        name: "Drag",
+        component: () =>
+          import(/* webpackChunkName: "drag" */ "../views/Drag.vue"),
+        meta: {
+          index: 1,
+        },
+      },
+      {
+        path: "promise",
+        name: "Promise",
+        component: () =>
+          import(/* webpackChunkName: "promise" */ "../views/Promise.vue"),
+        meta: {
+          index: 1,
+        },
+      },
+    ],
   },
 ];
 

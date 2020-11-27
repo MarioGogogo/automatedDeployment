@@ -1,28 +1,81 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <van-nav-bar title="首页" :safe-area-inset-top="true" />
+    <div class="refsh-content" :style="{ height: curHeight+'px' }">
+      <van-pull-refresh
+        v-model="isLoading"
+        success-text="刷新成功"
+        @refresh="onRefresh"
+      >
+        <van-grid :column-num="3">
+          <van-grid-item
+            v-for="(value) in modules"
+            :key=value
+            icon="photo-o"
+            :text=value
+              dot
+            @click="itemClick(value)"
+          
+          />
+        </van-grid>
+          <p>刷新次数: {{ count }}</p>
+      </van-pull-refresh>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src333
-import HelloWorld from '@/components/HelloWorld.vue';
-
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld,
-  },
-  data(){
+  name: "Home",
+  data() {
     return {
-       msg:''
-    }
+      modules:['drag','promise','文字1','文字2','文字3'],
+      active: 0,
+      count: 0,
+      isLoading: false,
+      finished: false,
+      curHeight: 0, //当前所需屏幕高度
+    };
   },
-  created() {
-    if(this.$route.name === 'Home'){
-       this.msg = 'hello word'
-    }
-  }
+
+  //获取屏幕高度
+
+  beforeMount() {
+    var h = document.documentElement.clientHeight || document.body.clientHeight;
+    this.curHeight = h - 46 -50; //减去页面上固定高度height
+    console.log("curHeight :>> ", this.curHeight);
+  },
+
+  methods: {
+    onRefresh() {
+      setTimeout(() => {
+        this.isLoading = false;
+        this.count++;
+      }, 1000);
+    },
+    itemClick(event){
+      console.log('event :>> ', event);
+      this.$router.push({
+         path:`/v1.0/${event}`
+      })
+    },
+  },
 };
 </script>
+
+<style>
+.home {
+}
+.home .van-nav-bar {
+  background: #3498db;
+}
+.van-nav-bar .van-nav-bar__content .van-nav-bar__title {
+  color: #ecf0f1;
+}
+.refsh-content {
+  flex: 1;
+}
+.van-pull-refresh {
+  height: 100%;
+}
+</style>
