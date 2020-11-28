@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-11-13 21:43:50
+ * @LastEditTime: 2020-11-28 17:22:46
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /example-demo/src/router/index.js
+ */
 import Vue from "vue";
 import VueRouter from "vue-router";
 
@@ -17,12 +25,18 @@ const routes = [
     name: "Message",
     component: () =>
       import(/* webpackChunkName: "drag" */ "../views/Message.vue"),
+    meta: {
+      index: 0,
+    },
   },
   {
     path: "/setting",
     name: "Setting",
     component: () =>
       import(/* webpackChunkName: "drag" */ "../views/Setting.vue"),
+    meta: {
+      index: 0,
+    },
   },
   {
     path: "/v1.0",
@@ -48,7 +62,24 @@ const routes = [
           index: 1,
         },
       },
+      {
+        path: "about",
+        name: "About",
+        component: () =>
+          import(/* webpackChunkName: "promise" */ "../views/About.vue"),
+        meta: {
+          index: 1,
+        },
+      },
     ],
+  },
+  {
+    path: "/*",
+    name: "Home",
+    component: () => import(/* webpackChunkName: "drag" */ "../views/Home.vue"),
+    meta: {
+      index: 0,
+    },
   },
 ];
 

@@ -1,15 +1,18 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-11-13 00:14:17
+ * @LastEditTime: 2020-11-28 16:41:27
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /example-demo/src/App.vue
+-->
 <template>
   <div id="app">
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About1</router-link> |
-      <router-link to="/drag">Drag</router-link> |
-      <router-link to="/promise">Promise</router-link>
-    </div> -->
+    <!-- 页面切换动画transitionName -->
     <transition :name="transitionName">
       <router-view class="view"></router-view>
     </transition>
-    <van-tabbar route v-if="$route.meta.index !== 1">
+     <van-tabbar route class="tab" v-show="$route.meta.index === 0">
       <van-tabbar-item replace to="/home" icon="home-o">首页</van-tabbar-item>
       <van-tabbar-item to="/message" icon="comment-o">消息</van-tabbar-item>
       <van-tabbar-item to="/setting" icon="setting-o">设置</van-tabbar-item>
@@ -29,20 +32,16 @@ export default {
   watch: {
     //使用watch 监听$router的变化
     $route(to, from) {
-      console.log("to :>> ", to.meta.index);
-      console.log("from :>> ", from.meta.index);
+      console.log("to=" + to.meta.index, "from=" + from.meta.index)
       //如果to索引大于from索引,判断为前进状态,反之则为后退状态
-      if (to.meta.index || from.meta.index) {
-        if (to.meta.index > from.meta.index) {
-          //设置动画名称
-          this.transitionName = "slide-left";
-        } else {
+      if (to.meta.index > 0 || to.meta.index ===  0  && from.meta.index !== 0) {
+        if (to.meta.index < from.meta.index) {
           this.transitionName = "slide-right";
+        } else {
+          this.transitionName = "slide-left";
         }
-      } else {
-        console.log("清动画 :>> ");
+      } else if (to.meta.index == 0 && from.meta.index == 0) {
         this.transitionName = "";
-        console.log("this.transitionName :>> ", this.transitionName);
       }
     },
   },
@@ -75,28 +74,38 @@ export default {
   position: absolute;
 
 }
+
+/* 页面切换动画 */
 .slide-right-enter-active,
 .slide-right-leave-active,
 .slide-left-enter-active,
 .slide-left-leave-active {
+  /* will-change属性可以提前通知浏览器我们要对元素做什么动画，这样浏览器可以提前准备合适的优化设置 */
   will-change: transform;
-  transition: all .8s cubic-bezier(.55,0,.1,1);
+  transition: all ease 0.4s;
+  -webkit-transition: all ease 0.4s;
   position: absolute;
+  width: 100%;
+  left: 0;
 }
 .slide-right-enter {
-  opacity: 0;
-  transform: translate3d(-100%, 0, 0);
+  transform: translateX(-100%);
+  -webkit-transform: translateX(-100%);
 }
 .slide-right-leave-active {
-  opacity: 0;
-  transform: translate3d(100%, 0, 0);
+  transform: translateX(100%);
+  -webkit-transform: translateX(100%);
 }
 .slide-left-enter {
-  opacity: 0;
-  transform: translate3d(100%, 0, 0);
+  transform: translateX(100%);
+  -webkit-transform: translateX(100%);
 }
 .slide-left-leave-active {
-  opacity: 0;
-  transform: translate3d(-100%, 0, 0);
+  transform: translateX(-100%);
+  -webkit-transform: translateX(-100%);
 }
+.tab{
+   z-index: 999;
+}
+
 </style>

@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-11-13 00:34:57
+ * @LastEditTime: 2020-11-28 16:22:21
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /example-demo/src/views/Home.vue
+-->
 <template>
   <div class="home">
     <van-nav-bar title="首页" :safe-area-inset-top="true" />
@@ -21,6 +29,7 @@
           <p>刷新次数: {{ count }}</p>
       </van-pull-refresh>
     </div>
+   
   </div>
 </template>
 
@@ -29,21 +38,26 @@ export default {
   name: "Home",
   data() {
     return {
-      modules:['drag','promise','文字1','文字2','文字3'],
+      modules:['drag','promise','about','文字2','文字3'],
       active: 0,
       count: 0,
       isLoading: false,
       finished: false,
-      curHeight: 0, //当前所需屏幕高度
+      curHeight: 571, //当前所需屏幕高度
     };
   },
 
-  //获取屏幕高度
+  beforeCreate(){
+    this.curHeight = 571
+  },
 
+  //获取屏幕高度
   beforeMount() {
-    var h = document.documentElement.clientHeight || document.body.clientHeight;
-    this.curHeight = h - 46 -50; //减去页面上固定高度height
-    console.log("curHeight :>> ", this.curHeight);
+      if(this.curHeight) return
+    //   console.log("beforeMount", this.curHeight);
+    // var h = document.documentElement.clientHeight || document.body.clientHeight;
+    // this.curHeight = h - 46 -50; //减去页面上固定高度height
+    // console.log("beforeMount -curHeight :>> ", this.curHeight);
   },
 
   methods: {
