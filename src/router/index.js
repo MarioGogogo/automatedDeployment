@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-13 21:43:50
- * @LastEditTime: 2020-11-28 17:22:46
+ * @LastEditTime: 2020-11-28 21:16:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /example-demo/src/router/index.js
@@ -12,6 +12,11 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: "/login",
+    name: "Login",
+    component: () => import(/* webpackChunkName: "drag" */ "../views/Login.vue"),
+  },
   {
     path: "/home",
     name: "Home",

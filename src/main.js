@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-13 21:44:25
- * @LastEditTime: 2020-11-28 17:44:44
+ * @LastEditTime: 2020-11-28 18:05:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /example-demo/src/main.js
@@ -36,6 +36,10 @@ Vue.use(VueDND)
 //   icon: true,
 //   rtl: false,
 // });
+
+import $api from './utils/http'
+Vue.prototype.$api = $api
+
 
 
 import Vant from 'vant';

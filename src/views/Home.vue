@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-11-13 00:34:57
- * @LastEditTime: 2020-11-28 16:22:21
+ * @LastEditTime: 2020-11-28 18:07:04
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /example-demo/src/views/Home.vue
@@ -62,10 +62,16 @@ export default {
 
   methods: {
     onRefresh() {
-      setTimeout(() => {
-        this.isLoading = false;
-        this.count++;
-      }, 1000);
+     this.$api.article.articleDetail('id', {        
+            api: 123      
+        }).then(res=> {
+            // 执行某些操作   
+            console.log('res :>> ', res);   
+        })  
+      // setTimeout(() => {
+      //   this.isLoading = false;
+      //   this.count++;
+      // }, 1000);
     },
     itemClick(event){
       console.log('event :>> ', event);
